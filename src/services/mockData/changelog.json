@@ -1,0 +1,66 @@
+[
+  {
+    "Id": 1,
+    "version": "2.1.0",
+    "releaseDate": "2024-01-25T00:00:00.000Z",
+    "type": "feature",
+    "title": "Enhanced Search and Filtering",
+    "description": "Improved search functionality with real-time filtering, advanced filters by category and status, and better search result highlighting."
+  },
+  {
+    "Id": 2,
+    "version": "2.1.0",
+    "releaseDate": "2024-01-25T00:00:00.000Z",
+    "type": "improvement",
+    "title": "Better Error Messages",
+    "description": "Redesigned error messages to be more user-friendly and actionable, with clear guidance on how to resolve common issues."
+  },
+  {
+    "Id": 3,
+    "version": "2.0.5",
+    "releaseDate": "2024-01-20T00:00:00.000Z",
+    "type": "bugfix",
+    "title": "Fixed Mobile Search Issues",
+    "description": "Resolved search bar functionality problems on mobile devices where typing wouldn't filter results properly."
+  },
+  {
+    "Id": 4,
+    "version": "2.0.5",
+    "releaseDate": "2024-01-20T00:00:00.000Z",
+    "type": "improvement",
+    "title": "Performance Optimizations",
+    "description": "Reduced initial load time by 40% through code splitting, image optimization, and better caching strategies."
+  },
+  {
+    "Id": 5,
+    "version": "2.0.0",
+    "releaseDate": "2024-01-15T00:00:00.000Z",
+    "type": "feature",
+    "title": "Roadmap Visualization",
+    "description": "Brand new roadmap section with kanban-style board showing planned features organized by timeline (Now, Next, Later)."
+  },
+  {
+    "Id": 6,
+    "version": "2.0.0",
+    "releaseDate": "2024-01-15T00:00:00.000Z",
+    "type": "feature",
+    "title": "Voting System Enhancement",
+    "description": "Improved voting mechanism with better visual feedback, vote count animations, and prevention of multiple votes."
+  },
+  {
+    "Id": 7,
+    "version": "1.9.2",
+    "releaseDate": "2024-01-10T00:00:00.000Z",
+    "type": "bugfix",
+    "title": "Status Update Notifications",
+    "description": "Fixed issue where users weren't receiving notifications when their submitted feedback status was updated."
+  },
+  {
+    "Id": 8,
+    "version": "1.9.1",
+    "releaseDate": "2024-01-05T00:00:00.000Z",
+    "type": "improvement",
+    "title": "UI Polish and Accessibility",
+    "description": "Enhanced accessibility with better keyboard navigation, improved color contrast, and screen reader support throughout the application."
+  }
+]
