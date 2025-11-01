@@ -25,33 +25,33 @@ const RoadmapCard = ({ item, className = "" }) => {
     >
 <div className="flex items-start justify-between mb-3">
         <h3 className="text-base font-semibold text-gray-900 line-clamp-2 flex-1 pr-2">
-          {item.title}
+{item.title_c || item.title}
         </h3>
         {item.votes && (
-          <div className="flex items-center space-x-1 bg-blue-50 text-blue-600 px-2 py-1 rounded-lg text-xs font-medium">
+<div className="flex items-center space-x-1 bg-blue-50 text-blue-600 px-2 py-1 rounded-lg text-xs font-medium">
             <ApperIcon name="ThumbsUp" className="h-3 w-3" />
-            <span>{item.votes}</span>
+            <span>{item.votes_c || item.votes || 0}</span>
           </div>
         )}
-        <div className={`w-3 h-3 rounded-full ${getTimelineColor(item.timeline)} flex-shrink-0 ml-3 mt-1`}></div>
+<div className={`w-3 h-3 rounded-full ${getTimelineColor(item.timeline_c || item.timeline)} flex-shrink-0 ml-3 mt-1`}></div>
       </div>
 <p className="text-gray-600 text-sm line-clamp-2 mb-3 leading-relaxed">
-        {item.description}
+        {item.description_c || item.description}
       </p>
 
 <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center space-x-2">
-          {item.linkedFeedbackIds?.length > 0 && (
+{(item.linked_feedback_ids_c ? JSON.parse(item.linked_feedback_ids_c) : (item.linkedFeedbackIds || [])).length > 0 && (
             <div className="flex items-center text-xs text-gray-500">
               <ApperIcon name="Link" className="h-3 w-3 mr-1" />
-              {item.linkedFeedbackIds.length}
+              {(item.linked_feedback_ids_c ? JSON.parse(item.linked_feedback_ids_c) : (item.linkedFeedbackIds || [])).length}
             </div>
           )}
         </div>
-        {item.estimatedDate && (
+{(item.estimated_date_c || item.estimatedDate) && (
           <div className="text-xs text-gray-500 flex items-center">
             <ApperIcon name="Calendar" className="h-3 w-3 mr-1" />
-            {item.estimatedDate}
+            {item.estimated_date_c || item.estimatedDate}
           </div>
         )}
       </div>

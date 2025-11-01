@@ -54,18 +54,18 @@ return (
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-            {feedback.title}
+{feedback.title_c || feedback.title}
           </h3>
-          <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed">
-            {feedback.description}
+          <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+            {feedback.description_c || feedback.description}
           </p>
         </div>
         <div className="ml-4 flex-shrink-0">
 <VoteButton
-            upvotes={feedback.upvotes}
-            downvotes={feedback.downvotes}
-            hasUpvoted={feedback.upvotedBy?.includes("currentUser")}
-            hasDownvoted={feedback.downvotedBy?.includes("currentUser")}
+upvotes={feedback.upvotes_c || feedback.upvotes || 0}
+            downvotes={feedback.downvotes_c || feedback.downvotes || 0}
+            hasUpvoted={feedback.upvotedBy?.includes("currentUser") || false}
+            hasDownvoted={feedback.downvotedBy?.includes("currentUser") || false}
             onUpvote={handleUpvote}
             onDownvote={handleDownvote}
           />
@@ -76,15 +76,15 @@ return (
         <div className="flex items-center space-x-3">
           <div className="flex items-center">
             <ApperIcon 
-              name={getCategoryIcon(feedback.category)} 
+name={getCategoryIcon(feedback.category_c || feedback.category)} 
               className="h-4 w-4 mr-2 text-gray-500" 
             />
-            <Badge variant={feedback.category}>
-              {feedback.category}
+            <Badge variant={feedback.category_c || feedback.category}>
+              {feedback.category_c || feedback.category}
             </Badge>
           </div>
-          <Badge variant={feedback.status.replace("-", "")}>
-            {feedback.status.replace("-", " ")}
+          <Badge variant={(feedback.status_c || feedback.status || '').replace("-", "")}>
+            {(feedback.status_c || feedback.status || '').replace("-", " ")}
           </Badge>
         </div>
         <div className="text-xs text-gray-500">

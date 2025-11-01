@@ -10,9 +10,9 @@ import { feedbackService } from "@/services/api/feedbackService"
 
 const FeedbackSubmissionModal = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    category: "feature"
+title_c: "",
+    description_c: "",
+    category_c: "feature"
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -86,8 +86,8 @@ const FeedbackSubmissionModal = ({ isOpen, onClose, onSubmit }) => {
                   <Input
                     type="text"
                     placeholder="Brief description of your feedback"
-                    value={formData.title}
-                    onChange={(e) => handleInputChange("title", e.target.value)}
+value={formData.title_c}
+                    onChange={(e) => handleInputChange("title_c", e.target.value)}
                     required
                   />
                 </div>
@@ -97,8 +97,8 @@ const FeedbackSubmissionModal = ({ isOpen, onClose, onSubmit }) => {
                     Category <span className="text-red-500">*</span>
                   </label>
                   <Select
-                    value={formData.category}
-                    onChange={(e) => handleInputChange("category", e.target.value)}
+value={formData.category_c}
+                    onChange={(e) => handleInputChange("category_c", e.target.value)}
                   >
                     <option value="feature">Feature Request</option>
                     <option value="bug">Bug Report</option>
@@ -113,8 +113,8 @@ const FeedbackSubmissionModal = ({ isOpen, onClose, onSubmit }) => {
                   <Textarea
                     placeholder="Provide detailed information about your feedback..."
                     rows={4}
-                    value={formData.description}
-                    onChange={(e) => handleInputChange("description", e.target.value)}
+value={formData.description_c}
+                    onChange={(e) => handleInputChange("description_c", e.target.value)}
                     required
                   />
                 </div>
@@ -131,7 +131,7 @@ const FeedbackSubmissionModal = ({ isOpen, onClose, onSubmit }) => {
                   <Button
                     type="submit"
                     loading={isSubmitting}
-                    disabled={!formData.title.trim() || !formData.description.trim()}
+disabled={!formData.title_c.trim() || !formData.description_c.trim()}
                   >
                     Submit Feedback
                   </Button>

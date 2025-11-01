@@ -47,19 +47,21 @@ const handleCreateEntry = async (entryData) => {
 
   const groupByVersion = (entries) => {
     const grouped = {}
-    entries.forEach(entry => {
-      if (!grouped[entry.version]) {
-        grouped[entry.version] = []
+entries.forEach(entry => {
+      const version = entry.version_c || entry.version
+      if (!grouped[version]) {
+        grouped[version] = []
       }
-      grouped[entry.version].push(entry)
+      grouped[version].push(entry)
     })
     return grouped
   }
 
   const getTypeStats = () => {
-    const stats = { feature: 0, improvement: 0, bugfix: 0 }
+const stats = { feature: 0, improvement: 0, bugfix: 0 }
     changelogData.forEach(entry => {
-      stats[entry.type] = (stats[entry.type] || 0) + 1
+      const type = entry.type_c || entry.type
+      stats[type] = (stats[type] || 0) + 1
     })
     return stats
   }

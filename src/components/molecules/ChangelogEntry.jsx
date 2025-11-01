@@ -56,16 +56,16 @@ const ChangelogEntry = ({ entry, isLast = false }) => {
       {/* Timeline Date - Left Side */}
       <div className="flex-shrink-0 w-32 text-right pr-8">
         <div className="text-3xl font-bold text-gray-900">
-          {formatDay(entry.releaseDate)}
+{formatDay(entry.release_date_c || entry.releaseDate)}
         </div>
-        <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-          {formatMonth(entry.releaseDate)}
+        <div className="text-xs text-gray-500 font-medium">
+          {formatMonth(entry.release_date_c || entry.releaseDate)}
         </div>
       </div>
 
       {/* Timeline Marker */}
       <div className="flex-shrink-0 relative">
-        <div className={`w-3 h-3 rounded-full ${getTypeColor(entry.type)} ring-4 ring-white shadow-md z-10 relative`}></div>
+<div className={`w-3 h-3 rounded-full ${getTypeColor(entry.type_c || entry.type)} ring-4 ring-white shadow-md z-10 relative`}></div>
         {!isLast && (
           <div className="absolute left-1/2 top-3 bottom-0 w-px bg-gradient-to-b from-gray-300 to-gray-200 -translate-x-1/2 h-full"></div>
         )}
@@ -81,28 +81,28 @@ const ChangelogEntry = ({ entry, isLast = false }) => {
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-2">
-                <Badge variant={entry.type}>
-                  <ApperIcon name={getTypeIcon(entry.type)} className="h-3 w-3 mr-1" />
-                  {entry.type}
+<Badge variant={entry.type_c || entry.type}>
+                  <ApperIcon name={getTypeIcon(entry.type_c || entry.type)} className="h-3 w-3 mr-1" />
+                  {entry.type_c || entry.type}
                 </Badge>
                 <span className="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded-full">
                   {entry.version}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                {entry.title}
+<h3 className="text-xl font-bold text-gray-900 mb-2">
+                {entry.title_c || entry.title}
               </h3>
             </div>
           </div>
           
-          <p className="text-gray-600 leading-relaxed">
-            {entry.description}
+<p className="text-gray-600 leading-relaxed">
+            {entry.description_c || entry.description}
           </p>
 
           <div className="mt-4 pt-4 border-t border-gray-100">
             <div className="flex items-center text-xs text-gray-500">
               <ApperIcon name="Calendar" className="h-3.5 w-3.5 mr-1.5" />
-              <span>{formatDate(entry.releaseDate)}</span>
+<span>{formatDate(entry.release_date_c || entry.releaseDate)}</span>
             </div>
           </div>
         </motion.div>

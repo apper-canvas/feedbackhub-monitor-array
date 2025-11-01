@@ -39,12 +39,16 @@ const [feedbackData, setFeedbackData] = useState([])
   }, [])
 
   const filteredAndSortedFeedback = useMemo(() => {
-    let filtered = feedbackData.filter(feedback => {
-      const matchesSearch = !searchQuery || 
-        feedback.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        feedback.description.toLowerCase().includes(searchQuery.toLowerCase())
+let filtered = feedbackData.filter(feedback => {
+      const title = feedback.title_c || feedback.title || ''
+      const description = feedback.description_c || feedback.description || ''
+      const status = feedback.status_c || feedback.status || ''
       
-      const matchesStatus = statusFilter === "all" || feedback.status === statusFilter
+      const matchesSearch = !searchQuery || 
+        title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        description.toLowerCase().includes(searchQuery.toLowerCase())
+      
+      const matchesStatus = statusFilter === "all" || status === statusFilter
 
       return matchesSearch && matchesStatus
     })
@@ -52,11 +56,11 @@ const [feedbackData, setFeedbackData] = useState([])
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case "votes":
-          return b.votes - a.votes
+return (b.votes || 0) - (a.votes || 0)
         case "newest":
-          return new Date(b.createdAt) - new Date(a.createdAt)
+          return new Date(b.createdAt || b.CreatedOn) - new Date(a.createdAt || a.CreatedOn)
         case "oldest":
-          return new Date(a.createdAt) - new Date(b.createdAt)
+          return new Date(a.createdAt || a.CreatedOn) - new Date(b.createdAt || b.CreatedOn)
         default:
           return b.votes - a.votes
       }
@@ -148,7 +152,7 @@ return (
             <ApperIcon name="CheckCircle" className="h-8 w-8 mr-3" />
             <div>
               <div className="text-2xl font-bold">
-                {feedbackData.filter(f => f.status === "completed").length}
+{feedbackData.filter(f => (f.status_c || f.status) === "completed").length}
               </div>
               <div className="text-green-100">Completed</div>
             </div>

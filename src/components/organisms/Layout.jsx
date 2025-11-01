@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
+import { useAuth } from "@/layouts/Root"
 import Header from "@/components/organisms/Header"
 import Sidebar from "@/components/organisms/Sidebar"
 
 const Layout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { logout } = useAuth()
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -19,7 +21,7 @@ const Layout = () => {
       <Sidebar isOpen={isMobileMenuOpen} onClose={handleMobileMenuClose} />
       
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header onMobileMenuToggle={handleMobileMenuToggle} />
+        <Header onMobileMenuToggle={handleMobileMenuToggle} onLogout={logout} />
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">

@@ -16,14 +16,13 @@ import { formatDistanceToNow } from 'date-fns'
 const FeedbackDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [feedback, setFeedback] = useState(null)
+const [feedback, setFeedback] = useState(null)
   const [comments, setComments] = useState([])
   const [loading, setLoading] = useState(true)
   const [commentsLoading, setCommentsLoading] = useState(true)
   const [error, setError] = useState('')
   const [newComment, setNewComment] = useState('')
   const [submitting, setSubmitting] = useState(false)
-
   useEffect(() => {
     loadFeedbackAndComments()
   }, [id])
@@ -50,9 +49,13 @@ const FeedbackDetail = () => {
     }
   }
 
-  const handleVote = async (feedbackId, voteType) => {
+const handleVote = async (feedbackId, voteType) => {
     try {
-      await feedbackService.vote(feedbackId, voteType, 'currentUser')
+      if (voteType === 'upvote') {
+        await feedbackService.upvote(feedbackId, 'currentUser')
+      } else {
+        await feedbackService.downvote(feedbackId, 'currentUser')
+      }
       const updatedFeedback = await feedbackService.getById(id)
       setFeedback(updatedFeedback)
       toast.success(`Vote ${voteType === 'upvote' ? 'added' : 'removed'}!`)
@@ -140,28 +143,28 @@ const FeedbackDetail = () => {
           />
           
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-900 mb-3">
-              {feedback.title}
+<h1 className="text-3xl font-bold text-gray-900 mb-3">
+              {feedback.title_c || feedback.title}
             </h1>
             
             <div className="flex flex-wrap gap-2 mb-4">
-              <Badge className={getCategoryColor(feedback.category)}>
-                {feedback.category}
+              <Badge className={getCategoryColor(feedback.category_c || feedback.category)}>
+                {feedback.category_c || feedback.category}
               </Badge>
-              <Badge className={getStatusColor(feedback.status)}>
-                {feedback.status}
+              <Badge className={getStatusColor(feedback.status_c || feedback.status)}>
+                {feedback.status_c || feedback.status}
               </Badge>
             </div>
 
             <p className="text-gray-600 text-lg leading-relaxed">
-              {feedback.description}
+              {feedback.description_c || feedback.description}
             </p>
 
             <div className="flex items-center gap-4 mt-4 text-sm text-gray-500">
               <div className="flex items-center gap-1">
                 <ApperIcon name="Clock" size={16} />
                 <span>
-                  {formatDistanceToNow(new Date(feedback.createdAt), { addSuffix: true })}
+                  {formatDistanceToNow(new Date(feedback.createdAt || feedback.CreatedOn), { addSuffix: true })}
                 </span>
               </div>
             </div>

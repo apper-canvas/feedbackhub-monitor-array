@@ -7,12 +7,12 @@ import Textarea from "@/components/atoms/Textarea"
 import Badge from "@/components/atoms/Badge"
 
 const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    releaseDate: new Date().toISOString().split('T')[0],
-    type: "feature",
-    version: ""
+const [formData, setFormData] = useState({
+    title_c: "",
+    description_c: "",
+    release_date_c: new Date().toISOString().split('T')[0],
+    type_c: "feature",
+    version_c: ""
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -30,7 +30,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (!formData.title.trim() || !formData.description.trim() || !formData.version.trim()) {
+if (!formData.title_c.trim() || !formData.description_c.trim() || !formData.version_c.trim()) {
       return
     }
 
@@ -38,7 +38,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
     try {
       await onSubmit({
         ...formData,
-        releaseDate: new Date(formData.releaseDate).toISOString()
+        release_date_c: new Date(formData.release_date_c).toISOString()
       })
       
       setFormData({
@@ -59,11 +59,11 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
     if (!isSubmitting) {
       onClose()
       setFormData({
-        title: "",
-        description: "",
-        releaseDate: new Date().toISOString().split('T')[0],
-        type: "feature",
-        version: ""
+title_c: "",
+        description_c: "",
+        release_date_c: new Date().toISOString().split('T')[0],
+        type_c: "feature",
+        version_c: ""
       })
     }
   }
@@ -118,7 +118,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                     </label>
                     <Input
                       name="title"
-                      value={formData.title}
+value={formData.title_c}
                       onChange={handleChange}
                       placeholder="e.g., Enhanced Search Functionality"
                       required
@@ -134,7 +134,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                     </label>
                     <Input
                       name="version"
-                      value={formData.version}
+value={formData.version_c}
                       onChange={handleChange}
                       placeholder="e.g., 2.1.0"
                       required
@@ -153,7 +153,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                         <button
                           key={type.value}
                           type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
+onClick={() => setFormData(prev => ({ ...prev, type_c: type.value }))}
                           disabled={isSubmitting}
                           className={`p-4 rounded-lg border-2 transition-all duration-200 ${
                             formData.type === type.value
@@ -178,7 +178,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                     <Input
                       type="date"
                       name="releaseDate"
-                      value={formData.releaseDate}
+value={formData.release_date_c}
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
@@ -193,7 +193,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                     </label>
                     <Textarea
                       name="description"
-                      value={formData.description}
+value={formData.description_c}
                       onChange={handleChange}
                       placeholder="Describe the changes, improvements, or fixes in detail..."
                       rows={4}
@@ -217,7 +217,7 @@ const ChangelogEntryModal = ({ isOpen, onClose, onSubmit }) => {
                 </Button>
                 <Button
                   onClick={handleSubmit}
-                  disabled={isSubmitting || !formData.title.trim() || !formData.description.trim() || !formData.version.trim()}
+disabled={isSubmitting || !formData.title_c.trim() || !formData.description_c.trim() || !formData.version_c.trim()}
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                 >
                   {isSubmitting ? (

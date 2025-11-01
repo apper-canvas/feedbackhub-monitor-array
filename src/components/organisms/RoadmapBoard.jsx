@@ -31,9 +31,9 @@ const RoadmapBoard = () => {
 
   const groupByTimeline = (items) => {
 return {
-      planned: items.filter(item => item.status === "Planned"),
-      inProgress: items.filter(item => item.status === "In Progress"),
-      completed: items.filter(item => item.status === "Completed")
+planned: items.filter(item => (item.status_c || item.status) === "Planned"),
+      inProgress: items.filter(item => (item.status_c || item.status) === "In Progress"),
+      completed: items.filter(item => (item.status_c || item.status) === "Completed")
     }
   }
 
